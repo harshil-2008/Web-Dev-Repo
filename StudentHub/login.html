@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login to StudentHub portal to access your dashboard, attendance, assignments, and grades.">
+    <title>Login — StudentHub</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="site-logo">
+                <div class="logo-icon">S</div>
+                <div>
+                    <h1>StudentHub</h1>
+                    <p>Student Portal</p>
+                </div>
+            </a>
+            <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">ℹ️ About</a>
+            <a href="login.html">🔐 Login</a>
+            <a href="contact.html">✉️ Contact</a>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span class="current">Login</span>
+    </div>
+
+    <!-- Page Content -->
+    <div class="page-wrapper">
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <div class="login-card glass-card fade-in">
+                <h2>Sign In</h2>
+                <p class="login-subtitle">Enter your credentials to access the StudentHub portal</p>
+
+                <div id="login-alert" class="alert"></div>
+
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" class="form-control" placeholder="Enter your username or student ID" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block btn-lg" id="login-button">
+                        🔐 Login
+                    </button>
+                </form>
+            </div>
+
+        </main>
+
+        <!-- Aside -->
+        <aside class="page-aside">
+
+            <div class="glass-card fade-in">
+                <h3><span class="icon">🛟</span> Help Desk</h3>
+                <ul>
+                    <li><a href="contact.html">Contact IT Support</a></li>
+                    <li>Phone: +91-9876543210</li>
+                    <li>Email: help@studenthub.edu</li>
+                    <li>Available 9 AM — 6 PM</li>
+                </ul>
+            </div>
+
+            <div class="glass-card fade-in">
+                <h3><span class="icon">🔑</span> Forgot Password?</h3>
+                <ul>
+                    <li>Visit the IT department with your student ID</li>
+                    <li>Or email help@studenthub.edu from your registered email</li>
+                    <li>Password reset takes 24 hours</li>
+                </ul>
+            </div>
+
+            <div class="glass-card fade-in">
+                <h3><span class="icon">📖</span> User Guide</h3>
+                <ul>
+                    <li>Use your student ID as username</li>
+                    <li>Default password is your date of birth (DDMMYYYY)</li>
+                    <li>Change password after first login</li>
+                    <li>Enable two-factor authentication for security</li>
+                </ul>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>Copyright &copy; 2026 StudentHub. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="contact.html">Feedback</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

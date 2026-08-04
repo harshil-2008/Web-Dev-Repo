@@ -1,38 +1,156 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>StudentHub Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StudentHub Portal — Your one-stop student management platform for attendance, assignments, grades, and study materials.">
+    <title>StudentHub — Student Portal</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-    <header>
-        <h1>StudentHub</h1>
-        <p>Welcome to the student portal.</p>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="site-logo">
+                <div class="logo-icon">S</div>
+                <div>
+                    <h1>StudentHub</h1>
+                    <p>Student Portal</p>
+                </div>
+            </a>
+            <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+        </div>
     </header>
 
-    <nav>
-        <a href="index.html">Home</a> | 
-        <a href="#">About</a> | 
-        <a href="#">Login</a>
+    <!-- Navigation -->
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">ℹ️ About</a>
+            <a href="login.html">🔐 Login</a>
+            <a href="dashboard.html">📊 Dashboard</a>
+            <a href="contact.html">✉️ Contact</a>
+        </div>
     </nav>
 
-    <main>
-        <section>
-            <h2>Home Page</h2>
-            <p>This is my first web development practical. I am learning how to use basic HTML tags.</p>
-        </section>
-        
-        <aside>
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="#">Events</a></li>
-            </ul>
-        </aside>
-    </main>
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <span class="current">🏠 Home</span>
+    </div>
 
-    <footer>
-        <p>Copyright 2026</p>
+    <!-- Page Content -->
+    <div class="page-wrapper">
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Hero Banner -->
+            <section class="hero fade-in" id="hero-banner">
+                <h2>Welcome to StudentHub</h2>
+                <p>Your all-in-one student portal for managing attendance, assignments, grades, and study materials. Stay organized, stay ahead.</p>
+                <a href="login.html" class="cta-btn">Get Started →</a>
+            </section>
+
+            <!-- Portal Introduction -->
+            <section class="fade-in">
+                <h2 class="section-title">
+                    <span class="accent-bar"></span>
+                    Why StudentHub?
+                </h2>
+                <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: var(--space-8);">
+                    StudentHub is a comprehensive student management portal designed to streamline your academic life. Access your attendance records, submit assignments, check grades, and download study materials — all from a single platform.
+                </p>
+            </section>
+
+            <!-- Feature Cards -->
+            <section class="fade-in">
+                <h2 class="section-title">
+                    <span class="accent-bar"></span>
+                    Features
+                </h2>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="card-icon cyan">📋</div>
+                        <h3>Attendance Tracking</h3>
+                        <p>View your subject-wise attendance records, track your overall attendance percentage, and stay on top of your presence in every class.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon purple">📝</div>
+                        <h3>Assignment Management</h3>
+                        <p>Submit assignments online, track due dates, and check submission status. Never miss a deadline again with our smart reminder system.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon green">📊</div>
+                        <h3>Grade Reports</h3>
+                        <p>Access your subject-wise marks, GPA, and CGPA with beautiful visualizations. Monitor your academic performance in real-time.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="card-icon pink">📚</div>
+                        <h3>Study Materials</h3>
+                        <p>Download lecture notes, PDFs, PPTs, and other study resources shared by your faculty. Search by subject or topic for quick access.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Aside -->
+        <aside class="page-aside">
+
+            <div class="glass-card fade-in">
+                <h3><span class="icon">🔗</span> Quick Links</h3>
+                <ul>
+                    <li><a href="dashboard.html">Student Dashboard</a></li>
+                    <li><a href="attendance.html">Check Attendance</a></li>
+                    <li><a href="assignments.html">View Assignments</a></li>
+                    <li><a href="grades.html">Grade Reports</a></li>
+                </ul>
+            </div>
+
+            <div class="glass-card fade-in">
+                <h3><span class="icon">📢</span> Latest Notices</h3>
+                <ul>
+                    <li>Mid-semester exams start Aug 18</li>
+                    <li>Library timings extended to 9 PM</li>
+                    <li>Workshop on AI — Register now!</li>
+                </ul>
+            </div>
+
+            <div class="glass-card fade-in">
+                <h3><span class="icon">📅</span> Academic Calendar</h3>
+                <ul>
+                    <li>Aug 4 — Classes resume</li>
+                    <li>Aug 15 — Independence Day (Holiday)</li>
+                    <li>Sep 1 — Assignment submission deadline</li>
+                </ul>
+            </div>
+
+            <div class="glass-card fade-in">
+                <h3><span class="icon">🎉</span> Upcoming Events</h3>
+                <ul>
+                    <li>Tech Fest 2026 — Sep 15-17</li>
+                    <li>Sports Day — Sep 25</li>
+                    <li>Cultural Night — Oct 2</li>
+                </ul>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>Copyright &copy; 2026 StudentHub. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="contact.html">Feedback</a>
+            </div>
+        </div>
     </footer>
 
+    <script src="js/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact StudentHub — reach out to us for support, feedback, or inquiries.">
+    <title>Contact — StudentHub</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="site-logo">
+                <div class="logo-icon">S</div>
+                <div>
+                    <h1>StudentHub</h1>
+                    <p>Student Portal</p>
+                </div>
+            </a>
+            <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">ℹ️ About</a>
+            <a href="contact.html">✉️ Contact</a>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span class="current">Contact</span>
+    </div>
+
+    <!-- Page Content -->
+    <div class="page-wrapper">
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <section class="fade-in">
+                <h2 class="section-title">
+                    <span class="accent-bar"></span>
+                    Contact Us
+                </h2>
+                <p style="color: var(--text-secondary); margin-bottom: var(--space-8);">
+                    Have a question, suggestion, or need help? Fill out the form below and we'll get back to you within 24 hours.
+                </p>
+
+                <div id="contact-alert" class="alert"></div>
+
+                <div class="glass-card">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="contact-name">Name</label>
+                            <input type="text" id="contact-name" class="form-control" placeholder="Enter your full name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-email">Email</label>
+                            <input type="email" id="contact-email" class="form-control" placeholder="Enter your email address" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contact-message">Message</label>
+                            <textarea id="contact-message" class="form-control" placeholder="Write your message here…" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg" id="send-button">
+                            ✉️ Send Message
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Aside -->
+        <aside class="page-aside">
+
+            <div class="glass-card fade-in">
+                <h3><span class="icon">🕐</span> Office Hours</h3>
+                <ul>
+                    <li>Monday — Friday: 9:00 AM — 5:00 PM</li>
+                    <li>Saturday: 10:00 AM — 2:00 PM</li>
+                    <li>Sunday: Closed</li>
+                </ul>
+            </div>
+
+            <div class="glass-card fade-in">
+                <h3><span class="icon">📞</span> Phone Numbers</h3>
+                <div class="contact-info-card">
+                    <div class="info-icon">📞</div>
+                    <div>
+                        <div class="info-label">General Inquiries</div>
+                        <div class="info-value">+91-9876543210</div>
+                    </div>
+                </div>
+                <div class="contact-info-card">
+                    <div class="info-icon">📱</div>
+                    <div>
+                        <div class="info-label">IT Support</div>
+                        <div class="info-value">+91-9876543211</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card fade-in">
+                <h3><span class="icon">📧</span> Email Addresses</h3>
+                <div class="contact-info-card">
+                    <div class="info-icon">📧</div>
+                    <div>
+                        <div class="info-label">General</div>
+                        <div class="info-value">info@studenthub.edu</div>
+                    </div>
+                </div>
+                <div class="contact-info-card">
+                    <div class="info-icon">🛟</div>
+                    <div>
+                        <div class="info-label">Support</div>
+                        <div class="info-value">support@studenthub.edu</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card fade-in">
+                <h3><span class="icon">📍</span> Campus Map</h3>
+                <div style="background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: var(--space-8); text-align: center; color: var(--text-muted); font-size: var(--font-sm);">
+                    <div style="font-size: 2rem; margin-bottom: var(--space-2);">🗺️</div>
+                    <p>StudentHub University Campus</p>
+                    <p style="margin-top: var(--space-1);">123 Education Ave, Tech City</p>
+                </div>
+            </div>
+
+        </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>Copyright &copy; 2026 StudentHub. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="contact.html">Feedback</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
