@@ -14,6 +14,12 @@
 
 <body>
 
+<div id="notification" class="notification">
+    <span>Welcome to StudentHub!</span>
+    <button id="closeNotification">X</button>
+</div>
+
+
 <header>
 
 <div class="logo">StudentHub</div>
@@ -27,6 +33,10 @@
 <a href="contact.html">Contact</a>
 <a href="FAQs.html">FAQ</a>
 <a href="feedback.html">Feedback</a>
+
+<button id="themeBtn">🌙 Dark</button>
+<button id="menuBtn">☰</button>
+
 </nav>
 
 </header>
@@ -103,12 +113,41 @@ Coding Competition Winner
 
 </section>
 
+<section class="hero" id="directorySection">
+    <h2>Student Directory</h2>
+    <p>Browse campus student profiles loaded dynamically from external JSON data using the Fetch API.</p>
+
+    <div class="directory-controls">
+        <input type="text" id="searchInput" placeholder="🔍 Search by name or email...">
+        <select id="filterCourse">
+            <option value="">All Courses</option>
+            <option value="Computer Engineering">Computer Engineering</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Information Technology">Information Technology</option>
+            <option value="Mechanical Engineering">Mechanical Engineering</option>
+            <option value="Electronics & Communication">Electronics & Communication</option>
+        </select>
+        <button id="sortBtn" class="btn">Sort: A to Z ↕</button>
+    </div>
+
+    <!-- Container where student profile cards are dynamically rendered by Fetch API -->
+    <div id="studentList" class="features"></div>
+
+    <!-- Pagination Controls -->
+    <div class="pagination-controls">
+        <button id="prevPageBtn" class="btn">◀ Previous</button>
+        <span id="pageInfo" style="font-weight: bold; font-size: 16px;">Page 1</span>
+        <button id="nextPageBtn" class="btn">Next ▶</button>
+    </div>
+</section>
+
 <footer>
 
 <p>© 2026 StudentHub | All Rights Reserved</p>
 
 </footer>
 
+<script src="script.js"></script>
 </body>
 
 </html>

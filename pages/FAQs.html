@@ -14,6 +14,12 @@
 
 <body>
 
+<div id="notification" class="notification">
+    <span>Welcome to StudentHub!</span>
+    <button id="closeNotification">X</button>
+</div>
+
+
 <header>
 
 <div class="logo">StudentHub</div>
@@ -29,6 +35,10 @@
 <a href="faq.html">FAQ</a>
 <a href="login.html">Login</a>
 
+
+<button id="themeBtn">🌙 Dark</button>
+<button id="menuBtn">☰</button>
+
 </nav>
 
 </header>
@@ -39,38 +49,34 @@
 
 </section>
 
-<section class="features">
+<section class="features" style="flex-direction:column; align-items:center;">
 
-<div class="card">
-
-<h2>How do I register?</h2>
-
+<div class="card" style="width:80%; max-width:600px; margin-bottom:10px;">
+<h2 class="faq-question" style="cursor:pointer; display:flex; justify-content:space-between;">How do I register? <span>+</span></h2>
+<div class="faq-answer">
 <p>Open the Register page, fill in your details and submit the form.</p>
-
+</div>
 </div>
 
-<div class="card">
-
-<h2>How can I join events?</h2>
-
+<div class="card" style="width:80%; max-width:600px; margin-bottom:10px;">
+<h2 class="faq-question" style="cursor:pointer; display:flex; justify-content:space-between;">How can I join events? <span>+</span></h2>
+<div class="faq-answer">
 <p>Visit the Events page and click the Register button for the event.</p>
-
+</div>
 </div>
 
-<div class="card">
-
-<h2>How do I update my profile?</h2>
-
+<div class="card" style="width:80%; max-width:600px; margin-bottom:10px;">
+<h2 class="faq-question" style="cursor:pointer; display:flex; justify-content:space-between;">How do I update my profile? <span>+</span></h2>
+<div class="faq-answer">
 <p>Go to Profile and click Edit Profile.</p>
-
+</div>
 </div>
 
-<div class="card">
-
-<h2>I forgot my password.</h2>
-
+<div class="card" style="width:80%; max-width:600px; margin-bottom:10px;">
+<h2 class="faq-question" style="cursor:pointer; display:flex; justify-content:space-between;">I forgot my password. <span>+</span></h2>
+<div class="faq-answer">
 <p>Contact the administrator to reset your password.</p>
-
+</div>
 </div>
 
 </section>
@@ -81,6 +87,7 @@
 
 </footer>
 
+<script src="script.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "title": "💻 Hackathon 2026",
+        "category": "Competition",
+        "date": "15 September 2026",
+        "venue": "Innovation Hall",
+        "description": "24-hour university coding marathon to build solutions for real challenges."
+    },
+    {
+        "id": 2,
+        "title": "🎭 Cultural Fest",
+        "category": "Cultural",
+        "date": "28 September 2026",
+        "venue": "Open Campus Ground",
+        "description": "Annual celebration featuring music, dance performances, and theatrical acts."
+    },
+    {
+        "id": 3,
+        "title": "🤖 Robotics Workshop",
+        "category": "Workshop",
+        "date": "05 October 2026",
+        "venue": "Hardware Lab 302",
+        "description": "Hands-on workshop on microcontroller programming and autonomous robot build."
+    },
+    {
+        "id": 4,
+        "title": "🔐 Cyber Security Seminar",
+        "category": "Seminar",
+        "date": "18 October 2026",
+        "venue": "Main Seminar Hall",
+        "description": "Keynote and live demonstration on web security, ethical hacking, and best practices."
+    },
+    {
+        "id": 5,
+        "title": "🚀 Startup Pitch Day",
+        "category": "Competition",
+        "date": "02 November 2026",
+        "venue": "Auditorium 1",
+        "description": "Present your innovative ideas in front of angel investors and alumni entrepreneurs."
+    },
+    {
+        "id": 6,
+        "title": "🌐 Cloud Computing Bootcamp",
+        "category": "Workshop",
+        "date": "12 November 2026",
+        "venue": "Computer Center Lab 4",
+        "description": "Comprehensive weekend training on Docker containers and AWS deployment."
+    }
+]

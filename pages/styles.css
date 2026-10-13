@@ -103,3 +103,256 @@ footer {
     padding: 20px;
     font-size: 14px;
 }
+
+/* Dynamic UI Components */
+.notification {
+    background: #ffcc00;
+    color: black;
+    padding: 10px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+#closeNotification {
+    background: transparent;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+.light-theme {
+    background: #ffffff;
+    color: #333333;
+}
+.light-theme .card {
+    background: #f4f4f4;
+    border-color: #cccccc;
+}
+.light-theme .card p {
+    color: #333333;
+}
+.light-theme a {
+    color: #333333;
+}
+.light-theme a:hover {
+    color: red;
+}
+.faq-answer {
+    display: none;
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+}
+.faq-answer.active {
+    display: block;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: black;
+    padding: 20px;
+    border: 2px solid red;
+    z-index: 1000;
+}
+.modal.active {
+    display: block;
+}
+.slide { display: none; }
+.slide.active { display: block; }
+
+/* =========================================
+   FORM CONTROLS & VALIDATION STYLING
+========================================= */
+.form-card {
+    width: 450px;
+    max-width: 95%;
+    margin: 30px auto;
+    text-align: left;
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #ffcccc;
+}
+
+.form-control,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ff4444;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: 0.2s border-color, 0.2s background;
+}
+
+.form-control:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #ff9999;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+select option {
+    background: #2b0000;
+    color: white;
+}
+
+.radio-group,
+.checkbox-group {
+    margin: 10px 0;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.radio-group label,
+.checkbox-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-weight: normal;
+    color: white;
+}
+
+.error-msg {
+    color: #ff6b6b;
+    font-size: 12px;
+    display: block;
+    margin-top: 5px;
+    min-height: 16px;
+    font-weight: bold;
+}
+
+.error-summary {
+    background: rgba(255, 0, 0, 0.2);
+    border: 1px solid #ff4444;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    color: #ff9999;
+    font-size: 14px;
+    display: none;
+    text-align: left;
+}
+
+.error-summary ul {
+    margin: 8px 0 0 20px;
+    padding: 0;
+}
+
+/* Light Theme Adjustments for Forms */
+.light-theme .form-card {
+    background: #ffffff;
+    border-color: #ff4444;
+}
+
+.light-theme .form-group label {
+    color: #333333;
+}
+
+.light-theme .form-control,
+.light-theme input[type="text"],
+.light-theme input[type="email"],
+.light-theme input[type="tel"],
+.light-theme input[type="password"],
+.light-theme input[type="number"],
+.light-theme select,
+.light-theme textarea {
+    background: #fdfdfd;
+    color: #333333;
+    border: 1px solid #cccccc;
+}
+
+.light-theme select option {
+    background: #ffffff;
+    color: #333333;
+}
+
+.light-theme .radio-group label,
+.light-theme .checkbox-group label {
+    color: #333333;
+}
+
+/* =========================================
+   DIRECTORY, SEARCH, FILTER & PAGINATION
+========================================= */
+.directory-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 25px auto;
+    max-width: 900px;
+    padding: 0 15px;
+}
+
+.directory-controls input,
+.directory-controls select {
+    width: auto;
+    min-width: 220px;
+}
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.pagination-controls button:disabled {
+    background: #555555;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 12px;
+    background: red;
+    color: white;
+    border-radius: 12px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    font-size: 11px;
+    border-radius: 10px;
+    background: #28a745;
+    color: white;
+}
+

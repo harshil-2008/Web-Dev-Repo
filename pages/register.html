@@ -3,21 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Register | StudentHub</title>
-
 <link rel="stylesheet" href="styles.css">
-
 </head>
-
 <body>
-
+<div id="notification" class="notification">
+    <span>Welcome to StudentHub!</span>
+    <button id="closeNotification">X</button>
+</div>
 <header>
-
 <div class="logo">StudentHub</div>
-
 <nav>
-
 <a href="index.html">Home</a>
 <a href="about.html">About</a>
 <a href="events.html">Events</a>
@@ -26,52 +22,112 @@
 <a href="contact.html">Contact</a>
 <a href="FAQs.html">FAQ</a>
 <a href="login.html">Login</a>
-
+<button id="themeBtn">🌙 Dark</button>
+<button id="menuBtn">☰</button>
 </nav>
-
 </header>
-
 <section class="hero">
-
 <h1>Create Your StudentHub Account</h1>
+<p>Join our campus community. Fill in your details below to register.</p>
 
-<div class="card">
+<div class="card form-card">
+    <!-- Summary Error Box for Form Errors -->
+    <div id="errorSummary" class="error-summary"></div>
 
-<form>
+    <form id="registerForm" action="process_registration.php" method="POST" novalidate>
+        
+        <!-- 1. Full Name -->
+        <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" name="name" id="name" placeholder="e.g. Harshil Prajapati" required>
+            <span class="error-msg" id="nameError"></span>
+        </div>
 
-<p>Full Name</p>
-<input type="text" placeholder="Enter Full Name">
+        <!-- 2. Email Address -->
+        <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" name="email" id="email" placeholder="e.g. student@charusat.edu.in" required>
+            <span class="error-msg" id="emailError"></span>
+        </div>
 
-<p>Email Address</p>
-<input type="email" placeholder="Enter Email">
+        <!-- 3. Mobile Number -->
+        <div class="form-group">
+            <label for="mobile">Mobile Number *</label>
+            <input type="tel" name="mobile" id="mobile" placeholder="10-digit number (e.g. 9876543210)" maxlength="10" required>
+            <span class="error-msg" id="mobileError"></span>
+        </div>
 
-<p>Enrollment Number</p>
-<input type="text" placeholder="Enter Enrollment Number">
+        <!-- 4. Course -->
+        <div class="form-group">
+            <label for="course">Course / Department *</label>
+            <select name="course" id="course" required>
+                <option value="">-- Select Your Course --</option>
+                <option value="Computer Engineering">Computer Engineering</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Electronics & Communication">Electronics & Communication</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+            </select>
+            <span class="error-msg" id="courseError"></span>
+        </div>
 
-<p>Department</p>
-<input type="text" placeholder="Computer Engineering">
+        <!-- 5. Academic Year -->
+        <div class="form-group">
+            <label for="year">Year of Study (1 - 4) *</label>
+            <input type="number" name="year" id="year" placeholder="1 to 4" min="1" max="4" required>
+            <span class="error-msg" id="yearError"></span>
+        </div>
 
-<p>Password</p>
-<input type="password" placeholder="Password">
+        <!-- 6. Gender -->
+        <div class="form-group">
+            <label>Gender *</label>
+            <div class="radio-group">
+                <label><input type="radio" name="gender" value="Male"> Male</label>
+                <label><input type="radio" name="gender" value="Female"> Female</label>
+                <label><input type="radio" name="gender" value="Other"> Other</label>
+            </div>
+            <span class="error-msg" id="genderError"></span>
+        </div>
 
-<p>Confirm Password</p>
-<input type="password" placeholder="Confirm Password">
+        <!-- 7. Password -->
+        <div class="form-group">
+            <label for="password">Password *</label>
+            <input type="password" name="password" id="password" placeholder="Min 8 characters (letters & numbers)" required>
+            <span class="error-msg" id="passwordError"></span>
+        </div>
 
-<br><br>
+        <!-- 8. Confirm Password -->
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password *</label>
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Re-enter password" required>
+            <span class="error-msg" id="confirmPasswordError"></span>
+        </div>
 
-<button class="btn">Register</button>
+        <!-- 9. Terms Acceptance -->
+        <div class="form-group">
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="terms" id="terms" value="accepted" required>
+                    I agree to the <a href="about.html" style="color:#ff6666;">Terms & Conditions</a> of StudentHub *
+                </label>
+            </div>
+            <span class="error-msg" id="termsError"></span>
+        </div>
 
-</form>
+        <!-- Submit Button -->
+        <div style="text-align: center; margin-top: 20px;">
+            <button type="submit" class="btn" style="width: 100%;">Create Account</button>
+        </div>
 
+        <p style="text-align:center; margin-top: 15px; font-size: 13px;">
+            Already have an account? <a href="login.html" style="color:#ff6666;">Login here</a>
+        </p>
+    </form>
 </div>
-
 </section>
-
 <footer>
-
 <p>© 2026 StudentHub | All Rights Reserved</p>
-
 </footer>
-
+<script src="script.js"></script>
 </body>
 </html>

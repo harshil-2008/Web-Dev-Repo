@@ -1,115 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>StudentHub</title>
-
+<title>StudentHub | Campus Portal</title>
 <link rel="stylesheet" href="styles.css">
-
 </head>
-
 <body>
 
+<div id="notification" class="notification">
+    <span>Welcome to StudentHub! Explore upcoming events and registration.</span>
+    <button id="closeNotification">X</button>
+</div>
+
 <header>
-
 <div class="logo">StudentHub</div>
-
 <nav>
-
-<ul class="navbar">
     <a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="events.html">Events</a>
-<a href="dashboard.html">Dashboard</a>
-<a href="contact.html">Contact</a>
-<a href="FAQs.html">FAQ</a>
-<a href="login.html">Login</a>
-</ul>
-
+    <a href="about.html">About</a>
+    <a href="events.html">Events</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="register.html">Register</a>
+    <a href="contact.html">Contact</a>
+    <a href="FAQs.html">FAQ</a>
+    <a href="login.html">Login</a>
+    <button id="themeBtn">🌙 Dark</button>
+    <button id="menuBtn">☰</button>
 </nav>
-
 </header>
 
 <section class="hero">
-
 <div class="hero-content">
-
 <h1>Welcome to StudentHub</h1>
-
 <p>
-
 Your one-stop platform for managing academic activities,
-college events, clubs, announcements, and your student profile.
-
+college events, student profiles, and campus registrations.
 </p>
 
-<a href="register.html" class="btn">Register</a>
-
-<a href="login.html" class="btn btn2">Login</a>
-
+<!-- Content Slider -->
+<div style="position:relative; width:80%; max-width:600px; margin: 20px auto; border:2px solid red; padding:10px; border-radius:10px; background:rgba(255,255,255,0.1);">
+    <div class="slide active"><h3>Slide 1: Student Registration</h3><p>Register online with instant validation and secure records.</p></div>
+    <div class="slide"><h3>Slide 2: Campus Events</h3><p>Stay updated with workshops, hackathons, and fests.</p></div>
+    <div class="slide"><h3>Slide 3: Student Directory</h3><p>Search, filter, and view peer profiles dynamically.</p></div>
+    
+    <button id="prevBtn" class="btn" style="padding:5px 10px; margin:5px;">&lt; Prev</button>
+    <button id="nextBtn" class="btn" style="padding:5px 10px; margin:5px;">Next &gt;</button>
 </div>
 
+<a href="register.html" class="btn">Register Now</a>
+<a href="dashboard.html" class="btn" style="background:#555;">Student Directory</a>
+<button id="learnMoreBtn" class="btn" style="background:#333;">Learn More</button>
+</div>
 </section>
 
+<!-- Modal -->
+<div id="modal" class="modal">
+    <h2>About StudentHub</h2>
+    <p>StudentHub is a beginner-friendly portal built using HTML5, CSS, JavaScript, Fetch API, PHP, and MySQL.</p>
+    <button id="modalOk" class="btn">OK</button>
+    <button id="closeModal" class="btn" style="background:#555;">Close</button>
+</div>
+
 <section class="features">
-
-<table border="1" cellpadding="20" cellspacing="10">
-    <tr>
-        <td>
-            <a href="events.html" class="card-link">
-            <div class="card">
-                <h2>📅 Events</h2>
-                <p>Discover workshops, events and more.</p>
-            </div>
-        </a>
-        </td>
-
-        <td>
-            <a href="notices.html" class="card-link">
-            <div class="card">
-                <h2>📢 Notices</h2>
-                <p>Important updates.</p>
-            </div>
-        </a>
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-            <a href="dashboard.html" class="card-link">
+    <a href="register.html" class="card-link" style="text-decoration:none;">
         <div class="card">
-        <h2>👤 Student Dashboard</h2>
-        <p>Manage your profile.</p>
-    </div>
-</a>
-        </td>
+            <h2>📝 Registration</h2>
+            <p>HTML5 Form with JavaScript regex validation.</p>
+        </div>
+    </a>
 
-        <td>
-            <a href="feedback.html" class="card-link">
-    <div class="card">
-        <h2>💬 Feedback</h2>
-        <p>Share your suggestions.</p>
-    </div>
-</a>
-        </td>
-    </tr>
-</table>
+    <a href="events.html" class="card-link" style="text-decoration:none;">
+        <div class="card">
+            <h2>📅 Campus Events</h2>
+            <p>Browse events loaded dynamically via Fetch API.</p>
+        </div>
+    </a>
 
+    <a href="dashboard.html" class="card-link" style="text-decoration:none;">
+        <div class="card">
+            <h2>👤 Student Directory</h2>
+            <p>Filter, sort, search, and paginate student profiles.</p>
+        </div>
+    </a>
+
+    <a href="test_db.php" class="card-link" style="text-decoration:none;">
+        <div class="card">
+            <h2>🗄️ Database Test</h2>
+            <p>Verify PHP MySQL connection and view tables.</p>
+        </div>
+    </a>
 </section>
 
 <footer>
-
-<p>
-
-© 2026 StudentHub | All Rights Reserved
-
-</p>
-
+<p>© 2026 StudentHub | All Rights Reserved</p>
 </footer>
 
+<script src="script.js"></script>
 </body>
-
 </html>
