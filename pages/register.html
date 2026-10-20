@@ -1,133 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Register | StudentHub</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration | StudentHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .register-card {
+            max-width: 650px;
+            margin: 30px auto;
+            padding: 35px 30px;
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #e2e8f0;
+            font-size: 14px;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="password"],
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 14px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+        }
+        .error-msg {
+            color: #ef4444;
+            font-size: 12px;
+            display: block;
+            margin-top: 5px;
+            font-weight: 500;
+            min-height: 18px;
+        }
+        .error-summary {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin-bottom: 25px;
+            color: #fca5a5;
+            font-size: 14px;
+            display: none;
+            text-align: left;
+        }
+        .password-strength-container {
+            margin-top: 8px;
+        }
+        .strength-bar-bg {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .strength-bar-fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease, background 0.3s ease;
+        }
+        .strength-text {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+            display: block;
+        }
+        .radio-group, .checkbox-group {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-top: 6px;
+        }
+        .radio-group label, .checkbox-group label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #cbd5e1;
+        }
+    </style>
 </head>
 <body>
-<div id="notification" class="notification">
-    <span>Welcome to StudentHub!</span>
-    <button id="closeNotification">X</button>
-</div>
-<header>
-<div class="logo">StudentHub</div>
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="events.html">Events</a>
-<a href="dashboard.html">Dashboard</a>
-<a href="profile.html">Profile</a>
-<a href="contact.html">Contact</a>
-<a href="FAQs.html">FAQ</a>
-<a href="login.html">Login</a>
-<button id="themeBtn">🌙 Dark</button>
-<button id="menuBtn">☰</button>
-</nav>
-</header>
-<section class="hero">
-<h1>Create Your StudentHub Account</h1>
-<p>Join our campus community. Fill in your details below to register.</p>
-
-<div class="card form-card">
-    <!-- Summary Error Box for Form Errors -->
-    <div id="errorSummary" class="error-summary"></div>
-
-    <form id="registerForm" action="process_registration.php" method="POST" novalidate>
-        
-        <!-- 1. Full Name -->
-        <div class="form-group">
-            <label for="name">Full Name *</label>
-            <input type="text" name="name" id="name" placeholder="e.g. Harshil Prajapati" required>
-            <span class="error-msg" id="nameError"></span>
-        </div>
-
-        <!-- 2. Email Address -->
-        <div class="form-group">
-            <label for="email">Email Address *</label>
-            <input type="email" name="email" id="email" placeholder="e.g. student@charusat.edu.in" required>
-            <span class="error-msg" id="emailError"></span>
-        </div>
-
-        <!-- 3. Mobile Number -->
-        <div class="form-group">
-            <label for="mobile">Mobile Number *</label>
-            <input type="tel" name="mobile" id="mobile" placeholder="10-digit number (e.g. 9876543210)" maxlength="10" required>
-            <span class="error-msg" id="mobileError"></span>
-        </div>
-
-        <!-- 4. Course -->
-        <div class="form-group">
-            <label for="course">Course / Department *</label>
-            <select name="course" id="course" required>
-                <option value="">-- Select Your Course --</option>
-                <option value="Computer Engineering">Computer Engineering</option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Information Technology">Information Technology</option>
-                <option value="Electronics & Communication">Electronics & Communication</option>
-                <option value="Mechanical Engineering">Mechanical Engineering</option>
-            </select>
-            <span class="error-msg" id="courseError"></span>
-        </div>
-
-        <!-- 5. Academic Year -->
-        <div class="form-group">
-            <label for="year">Year of Study (1 - 4) *</label>
-            <input type="number" name="year" id="year" placeholder="1 to 4" min="1" max="4" required>
-            <span class="error-msg" id="yearError"></span>
-        </div>
-
-        <!-- 6. Gender -->
-        <div class="form-group">
-            <label>Gender *</label>
-            <div class="radio-group">
-                <label><input type="radio" name="gender" value="Male"> Male</label>
-                <label><input type="radio" name="gender" value="Female"> Female</label>
-                <label><input type="radio" name="gender" value="Other"> Other</label>
+    <header>
+        <div class="header-container">
+            <a href="home.html" class="logo">StudentHub</a>
+            <button class="menu-btn" id="menuBtn" type="button">☰</button>
+            <div class="nav-actions" id="navActions">
+                <nav id="navbar">
+                    <a href="home.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="events.html">Events</a>
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="profile.html">Profile</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="FAQs.html">FAQ</a>
+                    <a href="login.php">Login</a>
+                </nav>
+                <button class="theme-btn" id="themeBtn" type="button">☀️ Light</button>
             </div>
-            <span class="error-msg" id="genderError"></span>
         </div>
+    </header>
 
-        <!-- 7. Password -->
-        <div class="form-group">
-            <label for="password">Password *</label>
-            <input type="password" name="password" id="password" placeholder="Min 8 characters (letters & numbers)" required>
-            <span class="error-msg" id="passwordError"></span>
-        </div>
+    <div class="notification" id="notification">
+        <span>📢 Welcome to StudentHub! Semester registration is currently open.</span>
+        <button id="closeNotification" type="button">×</button>
+    </div>
 
-        <!-- 8. Confirm Password -->
-        <div class="form-group">
-            <label for="confirm_password">Confirm Password *</label>
-            <input type="password" name="confirm_password" id="confirm_password" placeholder="Re-enter password" required>
-            <span class="error-msg" id="confirmPasswordError"></span>
-        </div>
-
-        <!-- 9. Terms Acceptance -->
-        <div class="form-group">
-            <div class="checkbox-group">
-                <label>
-                    <input type="checkbox" name="terms" id="terms" value="accepted" required>
-                    I agree to the <a href="about.html" style="color:#ff6666;">Terms & Conditions</a> of StudentHub *
-                </label>
+    <main class="container">
+        <section class="hero" style="padding-bottom: 5px;">
+            <div class="hero-content">
+                <h1>Student Portal Registration</h1>
+                <p>Create your university academic profile with client-side regex validation and secure password verification.</p>
             </div>
-            <span class="error-msg" id="termsError"></span>
-        </div>
+        </section>
 
-        <!-- Submit Button -->
-        <div style="text-align: center; margin-top: 20px;">
-            <button type="submit" class="btn" style="width: 100%;">Create Account</button>
-        </div>
+        <div class="register-card">
+            <!-- Dynamic Error Summary Box -->
+            <div id="errorSummary" class="error-summary"></div>
 
-        <p style="text-align:center; margin-top: 15px; font-size: 13px;">
-            Already have an account? <a href="login.html" style="color:#ff6666;">Login here</a>
-        </p>
-    </form>
-</div>
-</section>
-<footer>
-<p>© 2026 StudentHub | All Rights Reserved</p>
-</footer>
-<script src="script.js"></script>
+            <form id="registerForm" action="process_registration.php" method="POST" novalidate>
+                <!-- 1. Full Name -->
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" name="name" id="name" placeholder="e.g. Harshil Prajapati" required>
+                    <span class="error-msg" id="nameError"></span>
+                </div>
+
+                <!-- 2. Email Address -->
+                <div class="form-group">
+                    <label for="email">Institutional / Personal Email *</label>
+                    <input type="email" name="email" id="email" placeholder="e.g. student@charusat.edu.in" required>
+                    <span class="error-msg" id="emailError"></span>
+                </div>
+
+                <!-- 3. Mobile Number -->
+                <div class="form-group">
+                    <label for="mobile">Mobile Number (10 Digits) *</label>
+                    <input type="tel" name="mobile" id="mobile" placeholder="10-digit phone number (e.g. 9876543210)" maxlength="10" required>
+                    <span class="error-msg" id="mobileError"></span>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+                    <!-- 4. Course -->
+                    <div class="form-group">
+                        <label for="course">Department / Course *</label>
+                        <select name="course" id="course" required>
+                            <option value="">-- Select Course --</option>
+                            <option value="Computer Engineering">Computer Engineering</option>
+                            <option value="Computer Science">Computer Science</option>
+                            <option value="Information Technology">Information Technology</option>
+                            <option value="Electronics & Communication">Electronics & Communication</option>
+                            <option value="Mechanical Engineering">Mechanical Engineering</option>
+                        </select>
+                        <span class="error-msg" id="courseError"></span>
+                    </div>
+
+                    <!-- 5. Academic Year -->
+                    <div class="form-group">
+                        <label for="year">Year of Study (1 - 4) *</label>
+                        <input type="number" name="year" id="year" placeholder="1 to 4" min="1" max="4" required>
+                        <span class="error-msg" id="yearError"></span>
+                    </div>
+                </div>
+
+                <!-- 6. Gender Selection -->
+                <div class="form-group">
+                    <label>Gender *</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="gender" value="Male"> Male</label>
+                        <label><input type="radio" name="gender" value="Female"> Female</label>
+                        <label><input type="radio" name="gender" value="Other"> Other</label>
+                    </div>
+                    <span class="error-msg" id="genderError"></span>
+                </div>
+
+                <!-- 7. Password -->
+                <div class="form-group">
+                    <label for="password">Account Password *</label>
+                    <input type="password" name="password" id="password" placeholder="Min 8 characters (letters & numbers)" required>
+                    <div class="password-strength-container">
+                        <div class="strength-bar-bg">
+                            <div class="strength-bar-fill" id="strengthBar"></div>
+                        </div>
+                        <span class="strength-text" id="strengthText">Password strength: Empty</span>
+                    </div>
+                    <span class="error-msg" id="passwordError"></span>
+                </div>
+
+                <!-- 8. Confirm Password -->
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password *</label>
+                    <input type="password" name="confirm_password" id="confirm_password" placeholder="Re-enter password" required>
+                    <span class="error-msg" id="confirmPasswordError"></span>
+                </div>
+
+                <!-- 9. Terms Acceptance -->
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="terms" id="terms" value="accepted" required>
+                            I accept the <a href="about.html" style="color: #60a5fa;">Campus Portal Code of Conduct</a> and Terms *
+                        </label>
+                    </div>
+                    <span class="error-msg" id="termsError"></span>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; padding: 13px; font-size: 16px; margin-top: 10px;">Create Student Profile</button>
+
+                <p style="text-align: center; margin-top: 20px; font-size: 14px; color: #94a3b8;">
+                    Already registered? <a href="login.php" style="color: #60a5fa; text-decoration: none; font-weight: 600;">Sign in here</a>
+                </p>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>StudentHub</h3>
+                    <p>Your one-stop platform for managing academic activities, college events, clubs, announcements, and your student profile.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="FAQs.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 StudentHub | All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Password strength meter real-time calculation
+        const pwdInput = document.getElementById('password');
+        const sBar = document.getElementById('strengthBar');
+        const sText = document.getElementById('strengthText');
+
+        if (pwdInput && sBar && sText) {
+            pwdInput.addEventListener('input', function() {
+                const val = pwdInput.value;
+                let score = 0;
+                if (val.length >= 8) score++;
+                if (/[A-Z]/.test(val)) score++;
+                if (/[0-9]/.test(val)) score++;
+                if (/[^A-Za-z0-9]/.test(val)) score++;
+
+                if (val.length === 0) {
+                    sBar.style.width = '0%';
+                    sText.textContent = 'Password strength: Empty';
+                    sText.style.color = '#94a3b8';
+                } else if (score <= 1) {
+                    sBar.style.width = '25%';
+                    sBar.style.background = '#ef4444';
+                    sText.textContent = 'Password strength: Weak 🔴';
+                    sText.style.color = '#ef4444';
+                } else if (score === 2) {
+                    sBar.style.width = '50%';
+                    sBar.style.background = '#f59e0b';
+                    sText.textContent = 'Password strength: Medium 🟡';
+                    sText.style.color = '#f59e0b';
+                } else if (score === 3) {
+                    sBar.style.width = '75%';
+                    sBar.style.background = '#3b82f6';
+                    sText.textContent = 'Password strength: Good 🔵';
+                    sText.style.color = '#3b82f6';
+                } else {
+                    sBar.style.width = '100%';
+                    sBar.style.background = '#10b981';
+                    sText.textContent = 'Password strength: Strong 🟢';
+                    sText.style.color = '#10b981';
+                }
+            });
+        }
+    </script>
 </body>
 </html>

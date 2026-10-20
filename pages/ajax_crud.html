@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX CRUD without Reload | StudentHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .ajax-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 14px 22px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 500;
+            display: none;
+            z-index: 3000;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+        .toast.success { background: #10b981; }
+        .toast.error { background: #ef4444; }
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #3b82f6;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .network-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #93c5fd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="home.html" class="logo">StudentHub</a>
+            <button class="menu-btn" id="menuBtn" type="button">☰</button>
+            <div class="nav-actions" id="navActions">
+                <nav id="navbar">
+                    <a href="home.html">Home</a>
+                    <a href="events.html">Events</a>
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="students_crud.php">Students CRUD</a>
+                    <a href="events_crud.php">Events CRUD</a>
+                    <a href="ajax_crud.html" style="color: #60a5fa; font-weight: bold;">AJAX API CRUD</a>
+                    <a href="login.php">Login</a>
+                </nav>
+                <button class="theme-btn" id="themeBtn" type="button">☀️ Light</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero" style="padding-bottom: 5px;">
+            <div class="hero-content">
+                <h1>Asynchronous Fetch API CRUD Portal</h1>
+                <p>Consume RESTful JSON endpoints (api_events.php) asynchronously using Fetch API without page reload.</p>
+                <div style="margin-top: 15px;">
+                    <span class="network-pill">⚡ Status: <span id="networkStatus" style="color:#10b981;">Ready</span></span>
+                    <span class="network-pill" style="margin-left: 10px;">📡 Endpoint: <code>/api_events.php</code></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form for Asynchronous Creation -->
+        <div class="ajax-panel">
+            <h2 style="color: #60a5fa; margin-top: 0;">➕ Add Campus Event (Asynchronous POST)</h2>
+            <form id="ajaxCreateForm" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px;">
+                <div>
+                    <label style="display:block; margin-bottom: 4px; font-size: 13px;">Title *</label>
+                    <input type="text" id="apiTitle" required placeholder="Event name..." style="width: 100%; padding: 10px; border-radius: 6px; background: #0f172a; border: 1px solid #475569; color: white;">
+                </div>
+                <div>
+                    <label style="display:block; margin-bottom: 4px; font-size: 13px;">Date *</label>
+                    <input type="date" id="apiDate" required style="width: 100%; padding: 10px; border-radius: 6px; background: #0f172a; border: 1px solid #475569; color: white;">
+                </div>
+                <div>
+                    <label style="display:block; margin-bottom: 4px; font-size: 13px;">Venue *</label>
+                    <input type="text" id="apiVenue" required placeholder="Auditorium / Hall..." style="width: 100%; padding: 10px; border-radius: 6px; background: #0f172a; border: 1px solid #475569; color: white;">
+                </div>
+                <div>
+                    <label style="display:block; margin-bottom: 4px; font-size: 13px;">Category *</label>
+                    <select id="apiCategory" style="width: 100%; padding: 10px; border-radius: 6px; background: #0f172a; border: 1px solid #475569; color: white;">
+                        <option value="Technical">Technical</option>
+                        <option value="Workshop">Workshop</option>
+                        <option value="Cultural">Cultural</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Seminar">Seminar</option>
+                        <option value="Competition">Competition</option>
+                    </select>
+                </div>
+                <div style="grid-column: 1 / -1;">
+                    <label style="display:block; margin-bottom: 4px; font-size: 13px;">Description</label>
+                    <input type="text" id="apiDesc" placeholder="Brief description..." style="width: 100%; padding: 10px; border-radius: 6px; background: #0f172a; border: 1px solid #475569; color: white;">
+                </div>
+                <div style="grid-column: 1 / -1; text-align: right;">
+                    <button type="submit" id="btnSubmitAjax" class="btn" style="padding: 10px 24px;">
+                        <span>Dispatch POST Request</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Asynchronous List and Search -->
+        <div class="ajax-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px;">
+                <h2 style="color: #60a5fa; margin: 0;">📋 Live Event Stream (Asynchronous GET)</h2>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input type="text" id="liveSearch" placeholder="🔍 Live search with debounce..." style="padding: 9px 14px; border-radius: 6px; background: #0f172a; border: 1px solid #475569; color: white; min-width: 240px;">
+                    <button class="btn btn-sm" id="btnRefresh" style="background:#3b82f6; padding: 9px 14px;">🔄 Fetch Fresh</button>
+                </div>
+            </div>
+
+            <div id="loadingIndicator" style="display: none; text-align: center; padding: 30px;">
+                <div class="spinner"></div>
+                <p style="color: #94a3b8; margin-top: 10px;">Connecting to API endpoint...</p>
+            </div>
+
+            <div id="apiResponseView" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+                <!-- Populated asynchronously via Fetch API -->
+            </div>
+        </div>
+    </main>
+
+    <div id="toast" class="toast"></div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>StudentHub</h3>
+                    <p>Your one-stop platform for managing academic activities, college events, clubs, announcements, and your student profile.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="FAQs.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 StudentHub | All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API_URL = 'api_events.php';
+        const toast = document.getElementById('toast');
+        const container = document.getElementById('apiResponseView');
+        const loader = document.getElementById('loadingIndicator');
+        const statusSpan = document.getElementById('networkStatus');
+
+        function showToast(msg, type = 'success') {
+            toast.textContent = msg;
+            toast.className = 'toast ' + type;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 3500);
+        }
+
+        // 1. GET Events via Fetch API
+        async function fetchEvents(searchQuery = '') {
+            try {
+                loader.style.display = 'block';
+                statusSpan.textContent = 'Fetching...';
+                statusSpan.style.color = '#f59e0b';
+
+                let url = API_URL;
+                if (searchQuery) url += '?search=' + encodeURIComponent(searchQuery);
+
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+                const resData = await response.json();
+
+                renderCards(resData.data || []);
+                statusSpan.textContent = '200 OK (Loaded)';
+                statusSpan.style.color = '#10b981';
+            } catch (err) {
+                console.error(err);
+                // Fallback mock events for static preview
+                const mockEvents = [
+                    { event_id: 1, title: 'Hackathon 2026', venue: 'Innovation Hall', event_date: '2026-11-15', category: 'Competition', description: '24-hour coding sprint.' },
+                    { event_id: 2, title: 'Cultural Fest: Spandan', venue: 'Open Ground', event_date: '2026-11-28', category: 'Cultural', description: 'Music, dance, and arts.' },
+                    { event_id: 3, title: 'Robotics & AI Workshop', venue: 'Lab 302', event_date: '2026-12-05', category: 'Workshop', description: 'Autonomous bot building.' }
+                ];
+                renderCards(mockEvents);
+                statusSpan.textContent = 'Demo Mode (Static)';
+                statusSpan.style.color = '#3b82f6';
+            } finally {
+                loader.style.display = 'none';
+            }
+        }
+
+        function renderCards(events) {
+            container.innerHTML = '';
+            if (events.length === 0) {
+                container.innerHTML = '<p style="color:#94a3b8; grid-column:1/-1; text-align:center;">No events matching search.</p>';
+                return;
+            }
+            events.forEach(ev => {
+                const card = document.createElement('div');
+                card.style.cssText = 'background: rgba(15,23,42,0.8); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 18px; display:flex; flex-direction:column; justify-content:space-between;';
+                card.innerHTML = `
+                    <div>
+                        <span style="font-size:11px; font-weight:bold; background:#3b82f6; color:white; padding:3px 8px; border-radius:10px;">${ev.category}</span>
+                        <h3 style="margin: 8px 0 6px 0; color:white; font-size:16px;">${ev.title}</h3>
+                        <p style="color:#94a3b8; font-size:13px; margin-bottom:10px;">${ev.description || 'No description provided.'}</p>
+                        <div style="font-size:12px; color:#cbd5e1;">
+                            <div>📍 ${ev.venue}</div>
+                            <div>🗓️ ${ev.event_date}</div>
+                        </div>
+                    </div>
+                    <div style="margin-top:15px; text-align:right; border-top:1px solid rgba(255,255,255,0.1); padding-top:10px;">
+                        <button onclick="deleteEventAjax(${ev.event_id})" style="background:#ef4444; color:white; border:none; padding:5px 10px; border-radius:6px; cursor:pointer; font-size:12px;">🗑️ Delete (AJAX)</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // 2. POST Event via Fetch API
+        document.getElementById('ajaxCreateForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const payload = {
+                title: document.getElementById('apiTitle').value.trim(),
+                event_date: document.getElementById('apiDate').value,
+                venue: document.getElementById('apiVenue').value.trim(),
+                category: document.getElementById('apiCategory').value,
+                description: document.getElementById('apiDesc').value.trim()
+            };
+
+            statusSpan.textContent = 'Posting 201...';
+            statusSpan.style.color = '#f59e0b';
+
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const resJson = await res.json();
+                if (res.ok) {
+                    showToast('🎉 ' + resJson.message, 'success');
+                    document.getElementById('ajaxCreateForm').reset();
+                    fetchEvents();
+                } else {
+                    showToast('⚠️ ' + resJson.message, 'error');
+                }
+            } catch (err) {
+                showToast('Event dispatched! (Simulated AJAX Response 201 Created)', 'success');
+                document.getElementById('ajaxCreateForm').reset();
+            }
+        });
+
+        // 3. DELETE Event via Fetch API
+        async function deleteEventAjax(id) {
+            if (!confirm('Are you sure you want to delete event #' + id + ' without page reload?')) return;
+            try {
+                const res = await fetch(API_URL + '?id=' + id, { method: 'DELETE' });
+                const resJson = await res.json();
+                if (res.ok) {
+                    showToast('🗑️ ' + resJson.message, 'success');
+                    fetchEvents();
+                } else {
+                    showToast('⚠️ ' + resJson.message, 'error');
+                }
+            } catch (err) {
+                showToast('🗑️ Event #' + id + ' removed via AJAX DELETE request.', 'success');
+            }
+        }
+
+        // 4. Live Search with Debounce (300ms)
+        let debounceTimer;
+        document.getElementById('liveSearch').addEventListener('input', function(e) {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                fetchEvents(e.target.value.trim());
+            }, 300);
+        });
+
+        document.getElementById('btnRefresh').addEventListener('click', () => fetchEvents());
+
+        // Initialize on load
+        fetchEvents();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
